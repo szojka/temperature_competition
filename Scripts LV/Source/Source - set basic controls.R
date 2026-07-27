@@ -27,9 +27,9 @@ scenario_list <- c("coex_data_list_i","coex_data_list_ii", "coex_data_list_iii",
 suffix_list <- c("_h", "_c", paste0("_f", 1:10)) # names of some lists that the pull together function needs:
 
 # name temperatures
-era_temps <- c('historic', 'current', '0.5\u00B0C','1\u00B0C','1.5\u00B0C',
-               '2\u00B0C','2.5\u00B0C','3\u00B0C',
-               '3.5\u00B0C','4\u00B0C','4.5\u00B0C','5\u00B0C')
+era_temps <- c('historic', 'current', '0.5 C','1 C','1.5 C',
+               '2 C','2.5 C','3 C',
+               '3.5 C','4 C','4.5 C','5 C')
 
 ################################
 # set number of iterations:
@@ -51,4 +51,7 @@ alpha_min <- 0.01
 # starting point for both specialist and generalist if facilitation is allowed:
 facilitation_alpha_min <- -0.01
 
-
+category_cols <- c("coexist", "generalist excluded (+)", "generalist excluded (-)",
+                   "specialist excluded (+)", "specialist excluded (-)",
+                   "specialist extinct", "generalist extinct", "both spp extinct",
+                   "priority effect")

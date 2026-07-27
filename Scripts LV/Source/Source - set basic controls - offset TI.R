@@ -51,4 +51,10 @@ alpha_min <- 0.01
 # starting point for both specialist and generalist if facilitation is allowed:
 facilitation_alpha_min <- -0.01
 
+category_cols <- c("coexist", "generalist excluded (+)", "generalist excluded (-)",
+                   "specialist excluded (+)", "specialist excluded (-)",
+                   "specialist extinct", "generalist extinct", "both spp extinct",
+                   "priority effect")
+
+
 

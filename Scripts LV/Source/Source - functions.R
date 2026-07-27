@@ -1054,7 +1054,7 @@ do.categorize <- function(df){ # a dataframe with niche & fitness differences in
   #--------------------------
   # PRIORITY EFFECT
   #--------------------------
-  df$`priority effect` <- as.integer(fit_d < rho & fit_d > one_over_rho & niche_d < 0)
+  df$`priority effect` <- as.integer(fit_d < rho & fit_d > one_over_rho & niche_d < 0 & alive)
   
   #----------------------------
   # Self-check: mutual exclusivity / completeness
@@ -1066,13 +1066,5 @@ do.categorize <- function(df){ # a dataframe with niche & fitness differences in
   
   df$category_count <- rowSums(df[category_cols], na.rm = TRUE)
   
-  # n_gap      <- sum(df$category_count == 0)
-  # n_overlap  <- sum(df$category_count > 1)
-  # n_baddomain <- sum(df$rho_undefined)
-  # 
-  # if (n_gap > 0)      message(n_gap, " row(s) matched NO category (check niche_d == 0 cases, or values outside expected range)")
-  # if (n_overlap > 0)  message(n_overlap, " row(s) matched MORE THAN ONE category -- investigate")
-  # if (n_baddomain > 0) message(n_baddomain, " row(s) have undefined rho/one_over_rho (NA/Inf/NaN niche_d) -- check upstream alpha values")
-  # 
   return(df)
 }

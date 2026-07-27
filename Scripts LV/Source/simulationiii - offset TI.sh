@@ -3,7 +3,7 @@
 #SBATCH --time=7-00:00
 #SBATCH --mem=16G
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=mszojka@uoguelph.ca
+#SBATCH --mail-user=megan.szojka@case.edu
 #SBATCH --job-name=CoexClimate_Simulation_iii_offset
 
 ### Load R

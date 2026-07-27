@@ -142,6 +142,10 @@ full_dat_plot$colors <- droplevels(full_dat_plot$colors) # to keep colors what i
 full_dat_plot <- full_dat_plot %>%
   arrange(scenario, era, category)
 
+
+# head(full_dat_plot)
+# dim(full_dat_plot)
+
 # now go to the figure of choice and load:
 
 proportion_dat <- full_dat_plot

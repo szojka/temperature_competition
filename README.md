@@ -8,6 +8,11 @@ In order to perform simulations, first we must run the following two scripts:
 
 2. 'Scripts LV/Source/Source - replicates to simulate.R': This script uses the previously defined 'combos.Rdata' to set how many simulations we will fun. Saves the object 'replicate_dat.Rdata'
 
+
+FIXME:
+
+3. SAVE df_condition.Rdata - to define coexistence boundaries depending on niche vs fitness differences (used in Figures)
+
 Now the script 'Source - set basic controls.R' is ready to use, and simulations are able to be initiated.
 
 ## Defining temperature-dependence
@@ -24,7 +29,7 @@ We test four possible competition scenarios based on three function forms. Speci
 
 ## Simulations
 
-To run the simulations for all competition functional forms, we have separate scripts, in the 'Scripts LV/Source' folder, and their associated .sh script to run them on a cluster.
+To run the simulations for all competition functional forms, we have separate scripts, in the 'Scripts LV/Source' folder, and their associated shell script to run them on a cluster.
 
 Within each of these scripts, we source the parameter scripts associated with the scenario, the scrips 'Source - functions.R', 'Source - set basic controls.R' and 'Source - pull params together.R'.
 

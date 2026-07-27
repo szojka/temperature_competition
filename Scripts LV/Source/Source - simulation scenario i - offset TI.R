@@ -71,14 +71,11 @@ df_cat <- do.categorize(df = params)
 # data wrangling
 #-----------------------------------------------
 
-df_cat$row_sum <- NA
-df_cat$row_sum <- rowSums(df_cat[,15:23])
-
 df_categories1 <- df_cat %>%
-  pivot_longer(., cols = 15:23, 
+  pivot_longer(cols = all_of(category_cols),
                names_to = 'category', values_to = 'value') %>%
-  filter(!value == 0) %>% # filter out value == 0, then rm value column
-  select(-value, -row_sum)
+  filter(value != 0) %>%
+  select(-value)
 
 df_categories1$category <- as.factor(df_categories1$category) 
 df_categories1$era <- factor(df_categories1$era,

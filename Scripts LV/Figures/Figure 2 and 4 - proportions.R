@@ -441,106 +441,15 @@ era_trends2
 jpeg(paste0(dir_string,"/Figures-output/Figure 4 - trends.jpeg"), res = 600, width=6, height=8, units="in")
 era_trends2
 dev.off()
+
 #----------------------------------------------------------------
 #############################################
 # Results for figure 3
 #############################################
+
 era_diffs2 %>%
-  filter(category  %in% 'coexist') %>%
-  view()
+  filter(category  %in% 'coexist') 
 
 
 
-# #############################################
-# # Same for gradual
-# #############################################
-# 
-# # select scenarios to compare:
-# unique(Sub_dat_plot$scenario)
-# unique(Sub_dat_plot$category)
-# 
-# all_diff_warming <- Sub_dat_plot %>%
-#   filter(scenario %in% c("SGH inter & intra", "SGH intercepts") ) %>% # try idea for just gradual temperature dependence first
-#   # sum duplicate exlcusion categories to be able to widen dataframe
-#   group_by(era, theory, category, comp_scenario) %>%
-#   mutate(category = fct_collapse(category,'extinction' = c("specialist extinct", "both spp extinct"))) %>%
-#   mutate(prop = ifelse(n() > 1, sum(prop), prop)) %>%
-#   distinct() %>%
-#   # now prepare to widen 
-#   ungroup() %>%
-#   group_by(category, theory, comp_scenario) %>%
-#   distinct() %>%
-#   pivot_wider(., names_from = 'era', values_from = 'prop', values_fill = 0)
-# all_diff_warming$scenario <- droplevels(all_diff_warming$scenario )
-# 
-# head(all_diff_warming)
-# 
-# # Calculate differences between consecutive temperature columns
-# era_diffs2 <- all_diff_warming %>%
-#   group_by(category,theory, comp_scenario) %>%
-#   mutate(
-#     "historic to current" = current - historic,
-#     "historic to 0.5°C" = `0.5°C` - historic,
-#     "historic to 1°C" = `1°C` - historic,
-#     "historic to 1.5°C" = `1.5°C` - historic,
-#     "historic to 2°C" = `2°C` - historic,
-#     "historic to 2.5°C" = `2.5°C` - historic,
-#     "historic to 3°C" = `3°C` - historic,
-#     "historic to 3.5°C" =`3.5°C` - historic,
-#     "historic to 4°C" = `4°C` - historic,
-#     "historic to 4.5°C" = `4.5°C` - historic,
-#     "historic to 5°C" = `5°C` - historic
-#   ) %>%
-#   pivot_longer(., cols = 18:28, names_to = 'warming_step', values_to = 'difference') %>%
-#   select(theory, colors, comp_scenario, category, warming_step, difference)
-# head(era_diffs2)
-# 
-# # order steps
-# era_diffs2$warming_step <- factor(era_diffs2$warming_step, levels = c("historic to current",
-#                                                                       "historic to 0.5°C",
-#                                                                       "historic to 1°C",
-#                                                                       "historic to 1.5°C",
-#                                                                       "historic to 2°C",
-#                                                                       "historic to 2.5°C",
-#                                                                       "historic to 3°C",
-#                                                                       "historic to 3.5°C",
-#                                                                       "historic to 4°C",
-#                                                                       "historic to 4.5°C",
-#                                                                       "historic to 5°C"))
-# 
-# era_diffs2$category <- factor(era_diffs2$category, levels = c('coexist','competitive exclusion', 'extinction', 'priority effect'))
-# 
-# era_trends2 <- ggplot(filter(era_diffs2, !category  %in% 'priority effect')) + 
-#   # geom_rect(data = rect_data,
-#   #           aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
-#   #           fill = 'lightblue', alpha = 0.3, color = 'lightblue') +
-#   geom_line(mapping = aes(x = warming_step, y = difference*100, color = comp_scenario, group = comp_scenario), linewidth = 1) +
-#   geom_point(mapping = aes(x = warming_step, y = difference*100, fill = comp_scenario),
-#              size = 3, shape = 21, color = 'black') +
-#   theme_light() +
-#   facet_wrap(~category, nrow = 1, scales = 'free') +
-#   theme(axis.text.x = element_text(angle = 45, hjust = 1),
-#         legend.position = 'top',
-#         text = element_text(size = 16)
-#         #strip.background = element_blank(),
-#         #strip.text.x = element_blank(),
-#         #panel.spacing.y = unit(2, "lines")
-#   ) +
-#   scale_y_continuous(labels = function(x) paste0(x, "%")) +
-#   labs(x = "", y = "Percent difference (warming - historic)", color = '') + # rm \n (constant - temperature-dependent)
-#   #geom_hline(yintercept = 0, linetype = 'dashed', color = 'grey') +
-#   scale_fill_manual(labels = c('constant competition', 'temperature-dependent competition'),
-#                     values = c('grey70','orangered'))+
-#   scale_color_manual(labels = c('constant competition', 'temperature-dependent competition'),
-#                      values = c('grey70','orangered')) +
-#   scale_x_discrete(breaks = function(x) x[c(FALSE,TRUE)]) +
-#   guides(fill = "none")
-# era_trends2
-# 
-# #----------------------------------------------------------------
-# jpeg(paste0(dir_string,"/Figures-output/LV Figures/Figure 4 - trends (Gradual).jpeg"), res = 600, width=8, height=5, units="in")
-# era_trends2
-# dev.off()
-# #----------------------------------------------------------------
-# 
 

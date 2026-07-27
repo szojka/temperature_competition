@@ -63,5 +63,12 @@ full_dat$era <- factor(full_dat$era,
                                   '2°C','2.5°C','3°C',
                                   '3.5°C','4°C','4.5°C','5°C'))
 
+# Checks
+#---------------------------------------------
+# head(full_dat)
+# levels(full_dat$category)
+# filter(full_dat, category_count != 1)
+#---------------------------------------------
+
 parameter_dat <- full_dat
 save(parameter_dat, file = here::here("Scripts LV/Final dataframes/parameter_dat.Rdata"))
