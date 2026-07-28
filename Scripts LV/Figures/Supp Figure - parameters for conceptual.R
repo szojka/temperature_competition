@@ -41,33 +41,33 @@ tpc_dat %>%
 
 load(paste0(dir_string,"/Scripts LV/Final dataframes/combos_dat.RData"))
 
-source(paste0(here::here(), "/Scripts LV/Alphas/Alphas - Rstar intercepts.R")) 
-alp_dat1 <- full_alphas %>%
-  filter(combo %in% 1) %>%
-  select(-combo) %>%
-  pivot_longer(., cols = 2:5, names_to = "term", values_to = "alpha") %>%
-  dplyr::mutate(scenario = "Rstar intercepts")%>%
-  dplyr::mutate(theory = "Abrupt")%>%
-  dplyr::mutate(shape = "constant") %>%
-  dplyr::mutate(form = "Constant")
-source(paste0(here::here(), "/Scripts LV/Alphas/Alphas - SGH intercepts.R"))
-alp_dat2 <- full_alphas %>%  
-  filter(combo %in% 1) %>%
-  select(-combo) %>%
-  pivot_longer(., cols = 2:5, names_to = "term", values_to = "alpha") %>%
-  dplyr::mutate(scenario = "SGH intercepts")%>%
-  dplyr::mutate(theory = "Gradual")%>%
-  dplyr::mutate(shape = "constant") %>%
-  dplyr::mutate(form = "Constant")
-source(paste0(here::here(), "/Scripts LV/Alphas/Alphas - Rstar intra.R"))
-alp_dat3 <- full_alphas %>%
-  filter(combo %in% 1) %>%
-  select(-combo) %>%
-  pivot_longer(., cols = 2:5, names_to = "term", values_to = "alpha") %>%
-  dplyr::mutate(scenario = "Rstar intra")%>%
-  dplyr::mutate(theory = "Abrupt")%>%
-  dplyr::mutate(shape = NA) %>%
-  dplyr::mutate(form = NA)
+# source(paste0(here::here(), "/Scripts LV/Alphas/Alphas - Rstar intercepts.R")) 
+# alp_dat1 <- full_alphas %>%
+#   filter(combo %in% 1) %>%
+#   select(-combo) %>%
+#   pivot_longer(., cols = 2:5, names_to = "term", values_to = "alpha") %>%
+#   dplyr::mutate(scenario = "Rstar intercepts")%>%
+#   dplyr::mutate(theory = "Abrupt")%>%
+#   dplyr::mutate(shape = "constant") %>%
+#   dplyr::mutate(form = "Constant")
+# source(paste0(here::here(), "/Scripts LV/Alphas/Alphas - SGH intercepts.R"))
+# alp_dat2 <- full_alphas %>%  
+#   filter(combo %in% 1) %>%
+#   select(-combo) %>%
+#   pivot_longer(., cols = 2:5, names_to = "term", values_to = "alpha") %>%
+#   dplyr::mutate(scenario = "SGH intercepts")%>%
+#   dplyr::mutate(theory = "Gradual")%>%
+#   dplyr::mutate(shape = "constant") %>%
+#   dplyr::mutate(form = "Constant")
+# source(paste0(here::here(), "/Scripts LV/Alphas/Alphas - Rstar intra.R"))
+# alp_dat3 <- full_alphas %>%
+#   filter(combo %in% 1) %>%
+#   select(-combo) %>%
+#   pivot_longer(., cols = 2:5, names_to = "term", values_to = "alpha") %>%
+#   dplyr::mutate(scenario = "Rstar intra")%>%
+#   dplyr::mutate(theory = "Abrupt")%>%
+#   dplyr::mutate(shape = NA) %>%
+#   dplyr::mutate(form = NA)
 source(paste0(here::here(), "/Scripts LV/Alphas/Alphas - Rstar inter & intra.R"))
 alp_dat4 <- full_alphas %>%
   filter(combo %in% 1) %>%
@@ -77,15 +77,15 @@ alp_dat4 <- full_alphas %>%
   dplyr::mutate(theory = "Abrupt")%>%
   dplyr::mutate(shape = "temperature-dependent") %>%
   dplyr::mutate(form = "Abrupt") # helps for organization later
-source(paste0(here::here(), "/Scripts LV/Alphas/Alphas - Rstar inter.R"))
-alp_dat5 <- full_alphas %>%
-  filter(combo %in% 1) %>%
-  select(-combo) %>%
-  pivot_longer(., cols = 2:5, names_to = "term", values_to = "alpha") %>%
-  dplyr::mutate(scenario = "Rstar inter")%>%
-  dplyr::mutate(theory = "Abrupt")%>%
-  dplyr::mutate(shape = NA) %>%
-  dplyr::mutate(form = NA)
+# source(paste0(here::here(), "/Scripts LV/Alphas/Alphas - Rstar inter.R"))
+# alp_dat5 <- full_alphas %>%
+#   filter(combo %in% 1) %>%
+#   select(-combo) %>%
+#   pivot_longer(., cols = 2:5, names_to = "term", values_to = "alpha") %>%
+#   dplyr::mutate(scenario = "Rstar inter")%>%
+#   dplyr::mutate(theory = "Abrupt")%>%
+#   dplyr::mutate(shape = NA) %>%
+#   dplyr::mutate(form = NA)
 source(paste0(here::here(), "/Scripts LV/Alphas/Alphas - SGH inter & intra.R"))
 alp_dat6 <- full_alphas %>%
   filter(combo %in% 1) %>%
@@ -95,27 +95,27 @@ alp_dat6 <- full_alphas %>%
   dplyr::mutate(theory = "Gradual")%>%
   dplyr::mutate(shape = "temperature-dependent") %>%
   dplyr::mutate(form = "Gradual") # helps for organization later
-source(paste0(here::here(), "/Scripts LV/Alphas/Alphas - SGH inter.R"))
-alp_dat7 <- full_alphas %>%
-  filter(combo %in% 1) %>%
-  select(-combo) %>%
-  pivot_longer(., cols = 2:5, names_to = "term", values_to = "alpha") %>%
-  dplyr::mutate(scenario = "SGH inter")%>%
-  dplyr::mutate(theory = "Gradual")%>%
-  dplyr::mutate(shape = NA)%>%
-  dplyr::mutate(form = NA)
-source(paste0(here::here(), "/Scripts LV/Alphas/Alphas - SGH intra.R"))
-alp_dat8 <- full_alphas %>%
-  filter(combo %in% 1) %>%
-  select(-combo) %>%
-  pivot_longer(., cols = 2:5, names_to = "term", values_to = "alpha") %>%
-  dplyr::mutate(scenario = "SGH intra") %>%
-  dplyr::mutate(theory = "Gradual") %>%
-  dplyr::mutate(shape = NA)%>%
-  dplyr::mutate(form = NA)
+# source(paste0(here::here(), "/Scripts LV/Alphas/Alphas - SGH inter.R"))
+# alp_dat7 <- full_alphas %>%
+#   filter(combo %in% 1) %>%
+#   select(-combo) %>%
+#   pivot_longer(., cols = 2:5, names_to = "term", values_to = "alpha") %>%
+#   dplyr::mutate(scenario = "SGH inter")%>%
+#   dplyr::mutate(theory = "Gradual")%>%
+#   dplyr::mutate(shape = NA)%>%
+#   dplyr::mutate(form = NA)
+# source(paste0(here::here(), "/Scripts LV/Alphas/Alphas - SGH intra.R"))
+# alp_dat8 <- full_alphas %>%
+#   filter(combo %in% 1) %>%
+#   select(-combo) %>%
+#   pivot_longer(., cols = 2:5, names_to = "term", values_to = "alpha") %>%
+#   dplyr::mutate(scenario = "SGH intra") %>%
+#   dplyr::mutate(theory = "Gradual") %>%
+#   dplyr::mutate(shape = NA)%>%
+#   dplyr::mutate(form = NA)
 
 # want to make each scenario its own data frame to display all 4 main alpha scenarios
-alp_dat <- rbind(alp_dat1,alp_dat2,alp_dat4,alp_dat6)
+alp_dat <- rbind(alp_dat4,alp_dat6)
 
 alp_dat$species <- NA
 alp_dat$species[alp_dat$term %in% c("ajj", "aij")] <- "spp j; generalist"
@@ -193,46 +193,38 @@ r_plot <- ggplot() +
   #           hjust = -0.2, vjust = 1.2, size = 5, fontface = "bold") 
 r_plot
 
-
+#------------------------------------------------------------------------------
 jpeg("Figures-output/params_tpc.jpeg", res = 600, width=14, height=5, units="in")
 r_plot + theme(text = element_text(size = 26))
 dev.off()
+#------------------------------------------------------------------------------
 
 ########################
 # Alphas together:
+alp_dat <- alp_dat %>%
+  select(-form, -shape, -scenario) %>%
+  distinct()
+str(alp_dat)
+alp_dat$term <- as.factor(alp_dat$term)
+alp_dat$theory <- as.factor(alp_dat$theory)
+alp_dat$species <- as.factor(alp_dat$species)
 
-plot_dat <- alp_dat %>%
-  select(-scenario) %>%
-  filter(shape %in% c('constant','temperature-dependent'))
-  # created 'form' a column that works so that I can organize by 'shape' constant, gradual, abrupt
 
-plot_dat$form <- as.factor(plot_dat$form)
-plot_dat$form <- factor(plot_dat$form, levels = c('Constant', 'Gradual', 'Abrupt'))
-plot_dat$shape <- factor(plot_dat$shape, levels = c("constant", 
-                                                    "temperature-dependent"))
-plot_dat$term <- factor(plot_dat$term, levels = c('intraspecific', 'interspecific'))
-
-facet_labels <- data.frame(
-  shape = rep(c("constant","temperature-dependent"), each = 4),  # Replace with actual facet variable values
-  term = rep(c("intraspecific", "intraspecific","interspecific", "interspecific"), 2),  # Replace with actual facet variable values
-  theory = rep(c("Abrupt", "Gradual"), 4),  # Replace with actual facet variable values
-  label = c("B", "C", "D", "E", "F", "G", "H", "I"))
-
-alpha_plot <- ggplot() +
-  geom_line(data = plot_dat, mapping = aes(x = temp_full, y = alpha, color = species),
-            linewidth = 3, alpha = 0.7) + 
+alpha_plot <- ggplot(data = alp_dat, mapping = aes(x = temp_full, y = alpha, color = species, group = species)) +
+  geom_point(size = 1) +
+  geom_line(linewidth = 1.5) + 
+  geom_vline(xintercept = 11.5, color = 'grey50', linetype = 'dashed',linewidth = 1)+
   theme_light() +
   scale_color_manual(values = c("orchid","#92D050")) +
                      #guides = guide_legend(direction = "horizontal", ncol = 1, nrow = 2)) +
-  labs(x = paste0("Temperature ","\u00B0","C"), y = expression(alpha), color  = "") + # in breeding season
+  labs(x = paste0("Temperature"), y = expression(alpha), color  = "") + # in breeding season
   theme(legend.position = "none",
-        text = element_text(size = 26)
+        text = element_text(size = 16)
   ) +
-  facet_grid(rows = vars(term), cols = vars(form), scales = 'free') +
-  scale_y_continuous(n.breaks = 5) +
-   xlim(0,25) #+
-  # geom_text(data = facet_labels, aes(x = -Inf, y = Inf, label = label),
-  #           hjust = -0.2, vjust = 1.2, size = 5, fontface = "bold") 
+  facet_grid(cols = vars(theory),rows = vars(term), scales = 'free_y') +
+  scale_y_continuous() +
+  scale_x_continuous(n.breaks = 5, labels = function(x) paste0(x, "\u00B0C"), 
+                     limits = c(0,20))  
 alpha_plot 
 
 # FIXME what is going on with  Constant? Just make a line.
@@ -243,9 +235,8 @@ alpha_plot
 # fullplot
 
 #-----------------------------------------------------
-library(patchwork)
-jpeg("Figures-output/params_alpha.jpeg", res = 600, width=14, height=6, units="in")
-alpha_plot + theme(text = element_text(size = 26)) # adding text adjustment here works!
+jpeg("Figures-output/params_alpha.jpeg", res = 600, width=7, height=4, units="in")
+alpha_plot 
 dev.off()
 
 # jpeg("Figures-output/LV Figures/parameters_new.jpeg",res = 600, width=10, height=5, units="in")
