@@ -339,7 +339,7 @@ era_trends2 <- ggplot(filter(era_diffs2, !category  %in% 'priority effect')) +
   geom_point(mapping = aes(x = warming_step, y = difference*100, fill = comp_scenario),
              size = 3, shape = 21, color = 'black') +
   theme_light() +
-  ggh4x::facet_grid2(cols = vars(category), rows = vars(theory), scales = 'free_y', independent = 'y') +
+  facet_grid(cols = vars(theory), rows = vars(category), scales = 'free_y') +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = 'top',
         text = element_text(size = 16)
@@ -359,7 +359,7 @@ era_trends2 <- ggplot(filter(era_diffs2, !category  %in% 'priority effect')) +
 era_trends2
 
 #----------------------------------------------------------------
-jpeg(paste0(dir_string,"/Figures-output/OFFSET Figure 3 - trends.jpeg"), res = 600, width=8, height=8, units="in")
+jpeg(paste0(dir_string,"/Figures-output/OFFSET Figure 3 - trends.jpeg"), res = 600, width=6, height=8, units="in")
 era_trends2
 dev.off()
 #----------------------------------------------------------------

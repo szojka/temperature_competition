@@ -174,18 +174,6 @@ specialist_v_generalist_dat <- proportion_dat %>%
   distinct()
 specialist_v_generalist_dat
 
-# how do extinction rates for each species change based on era (warming period)?
-# summarized across scenario
-extinct_dat <- Sub_dat_plot %>%
-  filter(category %in% c('specialist extinct', 'both spp extinct') & era %in% c('1.5°C', '2°C', '2.5°C', '3°C')) %>%
-  mutate(prop = prop*100) %>%
-  group_by(category, era) %>%
-  mutate(mean_extinct = mean(prop),
-         sd_extinct = sd(prop)) %>%
-  select(category, era, mean_extinct, sd_extinct) %>%
-  distinct()
-extinct_dat
-
 # how often did priority effects occur?
 Sub_dat_plot %>%
   filter(category %in% 'priority effect') %>%
@@ -203,6 +191,33 @@ Sub_dat_plot %>%
   filter(category %in% 'coexist' & theory %in% 'Gradual', era %in% 'historic') %>%
   mutate(prop = prop*100)
 # 90.5 98.5
+
+Sub_dat_plot %>%
+  filter(category %in% 'coexist' & theory %in% 'Abrupt', era %in% 'historic') %>%
+  mutate(prop = prop*100)
+
+# how do extinction rates for each species change based on era (warming period)?
+# summarized across scenario
+extinct_dat <- Sub_dat_plot %>%
+  filter(category %in% c('specialist extinct', 'both spp extinct') & era %in% c('1.5°C', '2°C', '2.5°C', '3°C')) %>%
+  mutate(prop = prop*100) %>%
+  group_by(category, era) %>%
+  mutate(mean_extinct = mean(prop),
+         sd_extinct = sd(prop)) %>%
+  select(category, era, mean_extinct, sd_extinct) %>%
+  distinct()
+extinct_dat
+
+# When do extinction cross 50% threshold, for each facet of figure 2?
+extinct_dat2 <- Sub_dat_plot %>%
+  filter(category %in% c('specialist extinct', 'both spp extinct'))  %>%
+  mutate(prop = prop*100) %>%
+  group_by(scenario, era) %>%
+  mutate(total_extinct = sum(prop)) %>%
+  select(scenario, era, total_extinct) %>%
+  distinct()
+extinct_dat2
+# view(extinct_dat2)
 
 ###################################
 # Visualize lollipop graphs
@@ -306,6 +321,12 @@ diff_bottom
 # RESULTS for figure C, F
 ###################################
 
+# Determing the difference at each era
+within_theories %>%
+  filter(category %in% 'coexist') %>%
+  mutate(difference = difference*100)
+  view()
+
 # In the gradual TD scenario, how much did the difference bw constant and TD coexistence shrink by degree?
 within_theories %>%
   filter(comparing %in% levels(within_theories$comparing)[1] & category %in% 'coexist') %>%
@@ -353,7 +374,7 @@ dev.off()
 #----------------------------------------------------------------------------
 
 ################################################################################
-# Figure 4 - trends of coexistence loss over warming
+# Figure 3 - trends of coexistence loss over warming
 # All outcomes compared to historic
 ################################################################################
 
@@ -448,7 +469,9 @@ dev.off()
 #############################################
 
 era_diffs2 %>%
-  filter(category  %in% 'coexist') 
+  filter(category  %in% 'coexist') %>%
+  mutate(difference = difference*100) %>%
+  view()
 
 
 

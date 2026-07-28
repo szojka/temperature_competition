@@ -49,4 +49,8 @@ All figures are saved to the folder, 'Figures-outputs'.
 - Supp Figure - environmental conditions & map.R (ran)
 - Supp Figure - coex graph all.R (ran)
 - Supp Figure - parameters for conceptual figure.R (FIX ALPHAS)
+
 In the Scripts LV/Figures/Supp - offset specialists/, the process is repeated for this supplemental scenario.
+- OFFSET Figure 1 parameters for conceptual.R (ran)
+- OFFSET all figures.R (ran)
+

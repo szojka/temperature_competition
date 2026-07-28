@@ -195,5 +195,5 @@ dev.off()
 # RESULTS: extinction in Pie graphs
 #########################################
 
-pie_limits
+view(pie_limits)
 

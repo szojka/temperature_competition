@@ -15,7 +15,7 @@ dir_string <- getwd()
 #dir_string <- "/cluster/medbow/project/coexistence/mszojka" # for cluster!
 
 # for naming figures, list of names for each scenario
-source(paste0(dir_string,"/Scripts LV/Source/Source - set basic controls.R"))
+source(paste0(dir_string,"/Scripts LV/Source/Source - set basic controls - offset TI.R"))
 
 ######################
 # Load rs
@@ -99,7 +99,7 @@ r_plot <- ggplot() +
 r_plot
 
 #---------------------------------------------------
-jpeg("Figures-output/LV Figures/OFFSET_params_tpc.jpeg", res = 600, width=14, height=5, units="in")
+jpeg("Figures-output/OFFSET_params_tpc.jpeg", res = 600, width=14, height=5, units="in")
 r_plot + theme(text = element_text(size = 26))
 dev.off()
 #---------------------------------------------------

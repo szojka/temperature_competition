@@ -17,7 +17,7 @@ dir_string <- getwd()
 #dir_string <- "/cluster/medbow/project/coexistence/mszojka" # for cluster!
 
 # for naming figures, list of names for each scenario
-source(paste0(dir_string,"/Scripts LV/Source/Source - set basic controls.R"))
+source(paste0(dir_string,"/Scripts LV/Source/Source - set basic controls - offset TI.R"))
 
 # define persistence positive zone:
 source(paste0(here::here(), "/Scripts LV/Intrinsic growth/r - offset.R"))
