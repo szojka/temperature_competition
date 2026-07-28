@@ -255,19 +255,19 @@ diff_bottom
 ####################################
 
 #----------------------------------------------------------------------------
-jpeg(paste0(dir_string,"/Figures-output/LV Figures/OFFSET Figure 2 - gradual prop.jpeg"), res = 600, width=7, height=3.5, units="in")
+jpeg(paste0(dir_string,"/Figures-output/OFFSET Figure 2 - gradual prop.jpeg"), res = 600, width=7, height=3.5, units="in")
 fig3top
 dev.off()
 
-jpeg(paste0(dir_string,"/Figures-output/LV Figures/OFFSET Figure 2 - abrupt prop.jpeg"), res = 600, width=7, height=4.4, units="in")
+jpeg(paste0(dir_string,"/Figures-output/OFFSET Figure 2 - abrupt prop.jpeg"), res = 600, width=7, height=4.4, units="in")
 fig3bottom
 dev.off()
 
-jpeg(paste0(dir_string,"/Figures-output/LV Figures/OFFSET Figure 2 - gradual diff.jpeg"), res = 600, width=3.5, height=3.5, units="in")
+jpeg(paste0(dir_string,"/Figures-output/OFFSET Figure 2 - gradual diff.jpeg"), res = 600, width=3.5, height=3.5, units="in")
 diff_top
 dev.off()
 
-jpeg(paste0(dir_string,"/Figures-output/LV Figures/OFFSET Figure 2 - abrupt diff.jpeg"), res = 600, width=3.5, height=3.5, units="in")
+jpeg(paste0(dir_string,"/Figures-output/OFFSET Figure 2 - abrupt diff.jpeg"), res = 600, width=3.5, height=3.5, units="in")
 diff_bottom
 dev.off()
 #----------------------------------------------------------------------------
@@ -359,7 +359,7 @@ era_trends2 <- ggplot(filter(era_diffs2, !category  %in% 'priority effect')) +
 era_trends2
 
 #----------------------------------------------------------------
-jpeg(paste0(dir_string,"/Figures-output/LV Figures/OFFSET Figure 3 - trends.jpeg"), res = 600, width=8, height=8, units="in")
+jpeg(paste0(dir_string,"/Figures-output/OFFSET Figure 3 - trends.jpeg"), res = 600, width=8, height=8, units="in")
 era_trends2
 dev.off()
 #----------------------------------------------------------------
@@ -371,7 +371,7 @@ dev.off()
 
 dir_string <- getwd()
 
-source(paste0(dir_string,"/Scripts LV/Source/Source - set basic controls.R"))
+source(paste0(dir_string,"/Scripts LV/Source/Source - set basic controls - offset TI.R"))
 
 ###############################
 # Prepare parameter_dat
@@ -381,7 +381,6 @@ source(paste0(dir_string,"/Scripts LV/Source/Source - set basic controls.R"))
 # for coexistence graphs, remove all rows of parameter_dat where a r is < 0,
 # as this is indicative of extinction rather than a true exclusion
 
-load(paste0(here::here(),"/Scripts LV/Final dataframes/df_condition.Rdata")) # /January 2025/
 load(paste0(here::here(),"/Scripts LV/Final dataframes/parameter_dat_offset.Rdata")) # updated 10-27-2025
 source(paste0(here::here(), "/Scripts LV/Intrinsic growth/r - offset.R"))
 
@@ -432,9 +431,18 @@ temp <- as.data.frame(temp)
 
 min(temp$niche_d)
 max(temp$niche_d)
-
+# define coex boundary:
+niche_diff <- seq(from = -.25, to = 1, by = 0.001) # this equals 1-rho, i.e., x axis
+rho <- 1-niche_diff
+rho # fitness_ratio_min
+1/rho # fitness_ratio_max
+df_condition <- data.frame(niche_diff = niche_diff, # = SD, x-axis, 1-rho
+                           rho = rho, # rho
+                           one_over_rho = 1/rho) # 1/rho
+df_condition$one_over_rho <- round(df_condition$one_over_rho, 3)
+df_condition$rho <- round(df_condition$rho, 3)
 df_condition <- df_condition %>%
-  filter(niche_diff >= -0.181 & niche_diff <= 0.988)
+  filter(niche_diff >= -0.181 & niche_diff <= 0.986)
 
 coex_graph_all <- 
   ggplot() +
@@ -489,7 +497,7 @@ coex_graph_all <-
 coex_graph_all
 
 #----------------------------------------------------------------------
-path <- paste0(here::here(),"/Figures-output/LV Figures/OFFSET Figure 2 - new coex graph.jpeg")
+path <- paste0(here::here(),"/Figures-output/OFFSET Figure 4 - new coex graph.jpeg")
 jpeg(path, res = 600, width=6, height=7, units="in")
 coex_graph_all 
 Sys.sleep(3)
@@ -527,7 +535,7 @@ pie_figs <- ggplot(pie_limits, aes(x="", y=percent, fill=category)) +
 pie_figs
 
 #----------------------------------------------------------------------
-path <- paste0(here::here(),"/Figures-output/LV Figures/OFFSET PIE_fig3.jpeg")
+path <- paste0(here::here(),"/Figures-output/OFFSET PIE_fig4.jpeg")
 jpeg(path, res = 600, width=7, height=6, units="in")
 pie_figs 
 dev.off()

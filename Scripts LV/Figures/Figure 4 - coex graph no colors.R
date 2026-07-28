@@ -17,8 +17,7 @@ source(paste0(dir_string,"/Scripts LV/Source/Source - set basic controls.R"))
 # for coexistence graphs, remove all rows of parameter_dat where a r is < 0,
 # as this is indicative of extinction rather than a true exclusion
 
-load(paste0(here::here(),"/Scripts LV/Final dataframes/df_condition.Rdata")) # /January 2025/
-load(paste0(here::here(),"/Scripts LV/Final dataframes/parameter_dat.Rdata")) # updated 10-27-2025
+load(paste0(here::here(),"/Scripts LV/Final dataframes/parameter_dat.Rdata")) # updated 7-27-2026
 source(paste0(here::here(), "/Scripts LV/Intrinsic growth/r - generalist v specialist.R"))
 
 #filter out extinction situations when r > 0
@@ -67,6 +66,18 @@ temp <- as.data.frame(temp)
 
 min(temp$niche_d)
 max(temp$niche_d)
+
+niche_diff <- seq(from = -.25, to = 1, by = 0.001) # this equals 1-rho, i.e., x axis
+rho <- 1-niche_diff
+rho # fitness_ratio_min
+1/rho # fitness_ratio_max
+
+df_condition <- data.frame(niche_diff = niche_diff, # = SD, x-axis, 1-rho
+                  rho = rho, # rho
+                  one_over_rho = 1/rho) # 1/rho
+df_condition$one_over_rho <- round(df_condition$one_over_rho, 3)
+df_condition$rho <- round(df_condition$rho, 3)
+
 
 df_condition <- df_condition %>%
   filter(niche_diff >= -0.181 & niche_diff <= 0.986)
@@ -136,7 +147,7 @@ coex_graph_all <-
 coex_graph_all
 
 #----------------------------------------------------------------------
-path <- paste0(here::here(),"/Figures-output/Figure 2 - new coex graph.jpeg")
+path <- paste0(here::here(),"/Figures-output/Figure 4 - new coex graph.jpeg")
 jpeg(path, res = 600, width=6, height=7, units="in")
 coex_graph_all 
 Sys.sleep(3)
@@ -186,62 +197,3 @@ dev.off()
 
 pie_limits
 
-###################################
-# SAVE FACETS AS THEIR OWN PNG
-###################################
-# 
-# theory_names <- c('Gradual', 'Abrupt')
-# era_names <- c('historic', '2°C')
-# 
-# for(z in 1:length(theory_names)){ # loop through scenario names and paste onto png saving function
-#   for(x in 1:length(era_names)){
-#     #z <- 1 # for testing
-#     df <- temp %>% 
-#       dplyr::filter(theory %in% theory_names[z] & era %in% era_names[x])
-#     
-#     # facet wrap era gives more information
-#     coex_graph <-  ggplot() +
-#       
-#       # coexistence box
-#       geom_ribbon(data = df_condition, aes(x = niche_diff, ymin = rho, ymax = one_over_rho),
-#                   fill = 'lightblue', alpha = 0.3) +
-#       
-#       # 2D density contours for parameter draws
-#       geom_density_2d_filled(
-#         data = df,
-#         aes(x = niche_d, y = fit_d_kj), #  fill = era 
-#         alpha = 0.8, contour_var = "ndensity",
-#         breaks = seq(0.1, 1, by = 0.1) 
-#       ) +
-#       
-#       # coexistence boundaries (lay on top of densities)
-#       geom_line(data = df_condition, aes(x = niche_diff, y = rho), color = 'magenta3') +
-#       geom_line(data = df_condition, aes(x = niche_diff, y = one_over_rho), color = 'magenta3') +
-#       
-#       #scale_fill_brewer(palette = "RdPu", direction = -1) + # GnBu
-#       scale_fill_grey(start = 0.2,
-#                       end = 0.8,
-#                       aesthetics = "fill") + 
-#       # facet and themes
-#       scale_y_log10(name = expression(paste("Fitness difference: ", kappa[j]/kappa[i]))) +
-#       xlab(expression(paste("Niche Difference: ", 1-rho))) +
-#       labs(fill = "Density") +
-#       theme_light() +
-#       theme(legend.position = "none",
-#             ggside.panel.scale = 0.3,
-#             axis.text.x.top = element_blank(),
-#             axis.ticks.x.top = element_blank(),
-#             axis.text.y.right = element_blank(),
-#             axis.ticks.y.right = element_blank(),
-#             axis.line.x.top   = element_blank(),
-#             axis.line.y.right = element_blank(),
-#             text = element_text(size = 16))
-#     
-#     path <- paste0(here::here(),"/Figures-output/LV Figures/coex_graph/",theory_names[z],"_",era_names[x],"_coex_graph.jpeg")
-#     jpeg(path, res = 600, width=4, height=3, units="in")
-#     print(coex_graph)
-#     Sys.sleep(3)
-#     dev.off()
-#     
-#   }
-# }

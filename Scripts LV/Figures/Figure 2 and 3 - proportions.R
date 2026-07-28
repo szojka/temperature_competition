@@ -102,7 +102,7 @@ facet_labels_bottom$comp_scenario <- factor(facet_labels_bottom$comp_scenario, l
 
 
 # figure
-fig3top <- ggplot(filter(Sub_dat_plot, theory %in% 'Gradual'), mapping = aes(x= era, y = prop*100, fill = category)) + 
+fig2top <- ggplot(filter(Sub_dat_plot, theory %in% 'Gradual'), mapping = aes(x= era, y = prop*100, fill = category)) + 
   geom_col() +
   scale_fill_manual(values = levels(colors_dat$colors)) + 
   theme_light() +
@@ -119,10 +119,10 @@ fig3top <- ggplot(filter(Sub_dat_plot, theory %in% 'Gradual'), mapping = aes(x= 
   scale_y_continuous(labels = function(x) paste0(x, "%")) +
   geom_text(data = facet_labels_top, aes(x = -Inf, y = Inf, label = label),
             hjust = -0.2, vjust = 1.2, size = 5, fontface = "bold") 
-fig3top
+fig2top
 
 # note that this coloring has a different order so that the legend ordering behaves
-fig3bottom <- ggplot(filter(Sub_dat_plot, theory %in% 'Abrupt'), mapping = aes(x= era, y = prop*100, fill = category)) + 
+fig2bottom <- ggplot(filter(Sub_dat_plot, theory %in% 'Abrupt'), mapping = aes(x= era, y = prop*100, fill = category)) + 
   geom_col() +
   scale_fill_manual(values = c("magenta3", "purple", "lightblue", "plum", "mediumpurple1"),
                     breaks = c('competitive exclusion', 'both spp extinct', 'coexist', 
@@ -142,7 +142,7 @@ fig3bottom <- ggplot(filter(Sub_dat_plot, theory %in% 'Abrupt'), mapping = aes(x
   scale_y_continuous(labels = function(x) paste0(x, "%")) +
   geom_text(data = facet_labels_bottom, aes(x = -Inf, y = Inf, label = label),
             hjust = -0.2, vjust = 1.2, size = 5, fontface = "bold") 
-fig3bottom
+fig2bottom
 
 #################################
 # Results for figure 2 AB, DE
@@ -335,19 +335,19 @@ within_theories %>%
 ####################################
 
 #----------------------------------------------------------------------------
-jpeg(paste0(dir_string,"/Figures-output/Figure 3 - gradual prop.jpeg"), res = 600, width=7, height=3.5, units="in")
-fig3top
+jpeg(paste0(dir_string,"/Figures-output/Figure 2 - gradual prop.jpeg"), res = 600, width=7, height=3.5, units="in")
+fig2top
 dev.off()
 
-jpeg(paste0(dir_string,"/Figures-output/Figure 3 - abrupt prop.jpeg"), res = 600, width=7, height=4.4, units="in")
-fig3bottom
+jpeg(paste0(dir_string,"/Figures-output/Figure 2 - abrupt prop.jpeg"), res = 600, width=7, height=4.4, units="in")
+fig2bottom
 dev.off()
 
-jpeg(paste0(dir_string,"/Figures-output/Figure 3 - gradual diff.jpeg"), res = 600, width=3.5, height=3.5, units="in")
+jpeg(paste0(dir_string,"/Figures-output/Figure 2 - gradual diff.jpeg"), res = 600, width=3.5, height=3.5, units="in")
 diff_top
 dev.off()
 
-jpeg(paste0(dir_string,"/Figures-output/Figure 3 - abrupt diff.jpeg"), res = 600, width=3.5, height=3.5, units="in")
+jpeg(paste0(dir_string,"/Figures-output/Figure 2 - abrupt diff.jpeg"), res = 600, width=3.5, height=3.5, units="in")
 diff_bottom
 dev.off()
 #----------------------------------------------------------------------------
@@ -438,7 +438,7 @@ era_trends2 <- ggplot(filter(era_diffs2, !category  %in% 'priority effect')) +
 era_trends2
 
 #----------------------------------------------------------------
-jpeg(paste0(dir_string,"/Figures-output/Figure 4 - trends.jpeg"), res = 600, width=6, height=8, units="in")
+jpeg(paste0(dir_string,"/Figures-output/Figure 3 - trends.jpeg"), res = 600, width=6, height=8, units="in")
 era_trends2
 dev.off()
 

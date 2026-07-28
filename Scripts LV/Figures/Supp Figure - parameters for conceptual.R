@@ -194,7 +194,7 @@ r_plot <- ggplot() +
 r_plot
 
 
-jpeg("Figures-output/LV Figures/params_tpc.jpeg", res = 600, width=14, height=5, units="in")
+jpeg("Figures-output/params_tpc.jpeg", res = 600, width=14, height=5, units="in")
 r_plot + theme(text = element_text(size = 26))
 dev.off()
 
@@ -244,7 +244,7 @@ alpha_plot
 
 #-----------------------------------------------------
 library(patchwork)
-jpeg("Figures-output/LV Figures/params_alpha.jpeg", res = 600, width=14, height=6, units="in")
+jpeg("Figures-output/params_alpha.jpeg", res = 600, width=14, height=6, units="in")
 alpha_plot + theme(text = element_text(size = 26)) # adding text adjustment here works!
 dev.off()
 

@@ -8,11 +8,6 @@ In order to perform simulations, first we must run the following two scripts:
 
 2. 'Scripts LV/Source/Source - replicates to simulate.R': This script uses the previously defined 'combos.Rdata' to set how many simulations we will fun. Saves the object 'replicate_dat.Rdata'
 
-
-FIXME:
-
-3. SAVE df_condition.Rdata - to define coexistence boundaries depending on niche vs fitness differences (used in Figures)
-
 Now the script 'Source - set basic controls.R' is ready to use, and simulations are able to be initiated.
 
 ## Defining temperature-dependence
@@ -48,5 +43,10 @@ Before running the figures, we must make a few dataframes by gathering the simul
 
 All figures are saved to the folder, 'Figures-outputs'. 
 
-- Supp Figure - environmental conditions & map.R (ran)
+- Figure 2 and 3 - proportions.R (ran)
+- Figure 4 - coex graph no colors.R (ran)
 
+- Supp Figure - environmental conditions & map.R (ran)
+- Supp Figure - coex graph all.R (ran)
+- Supp Figure - parameters for conceptual figure.R (FIX ALPHAS)
+In the Scripts LV/Figures/Supp - offset specialists/, the process is repeated for this supplemental scenario.
