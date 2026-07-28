@@ -208,6 +208,7 @@ str(alp_dat)
 alp_dat$term <- as.factor(alp_dat$term)
 alp_dat$theory <- as.factor(alp_dat$theory)
 alp_dat$species <- as.factor(alp_dat$species)
+alp_dat$theory <- factor(alp_dat$theory, levels = c("Gradual", "Abrupt"))
 
 
 alpha_plot <- ggplot(data = alp_dat, mapping = aes(x = temp_full, y = alpha, color = species, group = species)) +
