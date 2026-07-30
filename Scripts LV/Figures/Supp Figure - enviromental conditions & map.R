@@ -165,24 +165,25 @@ levels(df_allyears$locations)
  library(viridis)
  # the colors I want:
  pal <- brewer.pal(11, 'PuOr')
- cols <- c("grey13", pal[11],pal[10],pal[9],pal[8],pal[7],pal[6],pal[5],pal[4],pal[3],pal[2],pal[1]) # need an extra urple to get to 12
+ cols <- c("grey13", pal[11],pal[10],pal[9],pal[8],pal[7],pal[6],pal[5],pal[4],pal[3],pal[2],pal[1]) # need an extra purple to get to 12
 
  env_year2 <- ggplot(df_meanT) +
    geom_line(aes(x = year, y = mean_tmean, color = era), linewidth = 1) +
-   scale_color_manual(values = cols) +
+   #scale_color_manual(values = cols) +
+   scale_color_viridis_d(option = 'magma')+
    theme_classic() +
    theme(text = element_text(size = 16),
          axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=.5, size = 16),
          legend.position = 'right') +
-   labs(y = paste0("Temperature ","\u00B0","C"), x = "Year", color = "Period") +
+   labs(y = paste0("Temperature"), x = "Year", color = "Timeseries") +
    geom_vline(xintercept = c(max(hyears),
                              max(cyears),
                            max(f1years)),color = "grey", linetype = "dashed") +
    scale_x_continuous(n.breaks = 20) +
-   ylim(8,20) +
+   scale_y_continuous(limits = c(8,20), labels = function(x) paste0(x, "\u00B0C"))+
    annotate(geom = 'text', x = 1895+31, y = 9, label = "Historic", size = 5, color = 'grey40')+
    annotate(geom = 'text', x = 1957+31, y = 9, label = "Current", size = 5, color = 'grey40') +
-   annotate(geom = 'text', x = 2019+31, y = 9, label = "Future \n projections", size = 5, color = 'grey40')
+   annotate(geom = 'text', x = 2019+31, y = 9, label = "Warming", size = 5, color = 'grey40')
  env_year2
 
  library(patchwork)
@@ -196,8 +197,8 @@ levels(df_allyears$locations)
  plot.with.inset <-
    ggdraw() +
    draw_plot(env_year2) +
-   draw_plot(USAmap, x = 0.09, y = .68, width = .4, height = .3)
- plot.with.inset
+   draw_plot(USAmap, x = 0.1, y = .68, width = .4, height = .3)
+ #plot.with.inset
  
  #----------------------------------------------
  # FIGURE 1
