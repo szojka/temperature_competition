@@ -126,7 +126,9 @@ fig3top <- ggplot(filter(Sub_dat_plot, theory %in% 'Gradual'), mapping = aes(x= 
   scale_x_discrete(breaks = function(x) x[c(FALSE,TRUE)]) +
   scale_y_continuous(labels = function(x) paste0(x, "%")) +
   geom_text(data = facet_labels_top, aes(x = -Inf, y = Inf, label = label),
-            hjust = -0.2, vjust = 1.2, size = 5, fontface = "bold") 
+            hjust = -0.2, vjust = 1.2, size = 5, fontface = "bold") +
+  # thermal limits
+  geom_vline(xintercept = c('2.5°C','3.5°C'), color = c('midnightblue',"steelblue",'midnightblue',"steelblue"), linewidth = 1, linetype = 'longdash')
 fig3top
 
 # note that this coloring has a different order so that the legend ordering behaves
@@ -149,7 +151,9 @@ fig3bottom <- ggplot(filter(Sub_dat_plot, theory %in% 'Abrupt'), mapping = aes(x
   scale_x_discrete(breaks = function(x) x[c(FALSE,TRUE)]) +
   scale_y_continuous(labels = function(x) paste0(x, "%")) +
   geom_text(data = facet_labels_bottom, aes(x = -Inf, y = Inf, label = label),
-            hjust = -0.2, vjust = 1.2, size = 5, fontface = "bold") 
+            hjust = -0.2, vjust = 1.2, size = 5, fontface = "bold") +
+  # thermal limits
+  geom_vline(xintercept = c('2.5°C','3.5°C'), color = c('midnightblue',"steelblue",'midnightblue',"steelblue"), linewidth = 1, linetype = 'longdash')
 fig3bottom
 
 ###################################
@@ -331,6 +335,8 @@ era_diffs2$warming_step <- factor(era_diffs2$warming_step, levels = c("historic 
                                                                       "historic to 5°C"))
 
 era_diffs2$category <- factor(era_diffs2$category, levels = c('coexist','competitive exclusion', 'extinction', 'priority effect'))
+
+# PLOT
 era_trends2 <- ggplot(filter(era_diffs2, !category  %in% 'priority effect')) + 
   # geom_rect(data = rect_data,
   #           aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
@@ -355,7 +361,9 @@ era_trends2 <- ggplot(filter(era_diffs2, !category  %in% 'priority effect')) +
   scale_color_manual(labels = c('constant competition', 'temperature-dependent competition'),
                      values = c('grey70','orangered')) +
   scale_x_discrete(breaks = function(x) x[c(FALSE,TRUE)]) +
-  guides(fill = "none")
+  guides(fill = "none")+
+  # thermal limits
+  geom_vline(xintercept = c('historic to 2.5°C','historic to 3.5°C'), color = c(rep(c('midnightblue',"steelblue"), times = 6)), linewidth = 1, linetype = 'longdash')
 era_trends2
 
 #----------------------------------------------------------------

@@ -61,7 +61,7 @@ ranges <- ranges %>% arrange(era) # I want to make sure historic comes first
 ranges$colors <- pal[2:6]
 
 # Define the colors
-tpc_colors <- c( "orchid","#92D050")
+tpc_colors <- c( "midnightblue","steelblue")
 range_colors <- unique(ranges$colors)
 combined_colors <- c(range_colors, "orange3", tpc_colors)
 

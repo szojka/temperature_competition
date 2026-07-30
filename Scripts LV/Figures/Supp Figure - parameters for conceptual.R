@@ -156,7 +156,7 @@ ranges <- ranges %>% arrange(era) # I want to make sure historic comes first
 ranges$colors <- pal[2:6]
 
 # Define the colors
-tpc_colors <- c( "orchid","#92D050")
+tpc_colors <- c( "midnightblue","steelblue")
 range_colors <- unique(ranges$colors)
 combined_colors <- c(range_colors, "orange3", tpc_colors)
 
@@ -216,7 +216,7 @@ alpha_plot <- ggplot(data = alp_dat, mapping = aes(x = temp_full, y = alpha, col
   geom_line(linewidth = 1.5) + 
   geom_vline(xintercept = 11.5, color = 'grey50', linetype = 'dashed',linewidth = 1)+
   theme_light() +
-  scale_color_manual(values = c("orchid","#92D050")) +
+  scale_color_manual(values = c("midnightblue","steelblue")) +
                      #guides = guide_legend(direction = "horizontal", ncol = 1, nrow = 2)) +
   labs(x = paste0("Temperature"), y = expression(alpha), color  = "") + # in breeding season
   theme(legend.position = "none",

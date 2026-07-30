@@ -73,3 +73,13 @@ full_rs <- full_rs_new %>%
 plot(full_rs$temp_full, full_rs$ri, type = "l", col = "red", xlab = "Mean temp", ylab = "r")
 lines(full_rs$temp_full, full_rs$rj, type = "l", col = "green",xlim = c(0, 100)) # spp j
 abline(v = TI, lty = "dashed") # good
+
+# sp j min and max = 
+min_spj <- min(full_rs$temp_full[full_rs$rj > 0]) 
+max_spj <- max(full_rs$temp_full[full_rs$rj > 0]) 
+# corresponds to 2.5 degree warming
+
+# sp i min and max = 
+min_spi <- min(full_rs$temp_full[full_rs$ri > 0]) 
+max_spi <- max(full_rs$temp_full[full_rs$ri > 0]) 
+# corresponds to 3.5 degree warming

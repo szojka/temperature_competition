@@ -6,6 +6,8 @@
 library(tidyverse)
 library(patchwork)
 
+dir_string <- getwd()
+
 # load proportion data
 load(here::here("Scripts LV/Final dataframes/proportion_dat.Rdata"))
 
@@ -118,7 +120,10 @@ fig2top <- ggplot(filter(Sub_dat_plot, theory %in% 'Gradual'), mapping = aes(x= 
   scale_x_discrete(breaks = function(x) x[c(FALSE,TRUE)]) +
   scale_y_continuous(labels = function(x) paste0(x, "%")) +
   geom_text(data = facet_labels_top, aes(x = -Inf, y = Inf, label = label),
-            hjust = -0.2, vjust = 1.2, size = 5, fontface = "bold") 
+            hjust = -0.2, vjust = 1.2, size = 5, fontface = "bold") +
+  # thermal limits
+  geom_vline(xintercept = c('3°C','4°C'), color = c('midnightblue',"steelblue",'midnightblue',"steelblue"), linewidth = 1, linetype = 'longdash')
+
 fig2top
 
 # note that this coloring has a different order so that the legend ordering behaves
@@ -141,7 +146,9 @@ fig2bottom <- ggplot(filter(Sub_dat_plot, theory %in% 'Abrupt'), mapping = aes(x
   scale_x_discrete(breaks = function(x) x[c(FALSE,TRUE)]) +
   scale_y_continuous(labels = function(x) paste0(x, "%")) +
   geom_text(data = facet_labels_bottom, aes(x = -Inf, y = Inf, label = label),
-            hjust = -0.2, vjust = 1.2, size = 5, fontface = "bold") 
+            hjust = -0.2, vjust = 1.2, size = 5, fontface = "bold") +
+  # thermal limits
+  geom_vline(xintercept = c('3°C','4°C'), color = c('midnightblue',"steelblue",'midnightblue',"steelblue"), linewidth = 1, linetype = 'longdash')
 fig2bottom
 
 #################################
@@ -292,7 +299,7 @@ diff_top <- ggplot(filter(within_theories, comparing %in% levels(within_theories
   scale_fill_manual(values = c('lightblue','purple', 'magenta3', 'plum'))+
   scale_x_discrete(breaks = function(x) x[c(FALSE,TRUE)]) +
   geom_text(data = facet_labels_C, aes(x = -Inf, y = Inf, label = label),
-            hjust = -0.2, vjust = 1.2, size = 5, color = "black", fontface = "bold")
+            hjust = -0.2, vjust = 1.2, size = 5, color = "black", fontface = "bold") 
 diff_top
 
 diff_bottom <- ggplot(filter(within_theories, comparing %in% levels(within_theories$comparing)[2])) + 
@@ -431,6 +438,8 @@ era_diffs2$warming_step <- factor(era_diffs2$warming_step, levels = c("historic 
                                                                     "historic to 5°C"))
 
 era_diffs2$category <- factor(era_diffs2$category, levels = c('coexist','competitive exclusion', 'extinction', 'priority effect'))
+
+# PLOT
 era_trends2 <- ggplot(filter(era_diffs2, !category  %in% 'priority effect')) + 
   # geom_rect(data = rect_data,
   #           aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
@@ -455,7 +464,9 @@ era_trends2 <- ggplot(filter(era_diffs2, !category  %in% 'priority effect')) +
   scale_color_manual(labels = c('constant competition', 'temperature-dependent competition'),
                      values = c('grey70','orangered')) +
   scale_x_discrete(breaks = function(x) x[c(FALSE,TRUE)]) +
-  guides(fill = "none")
+  guides(fill = "none") +
+  # thermal limits
+  geom_vline(xintercept = c('historic to 3°C','historic to 4°C'), color = c(rep(c('midnightblue',"steelblue"), times = 6)), linewidth = 1, linetype = 'longdash')
 era_trends2
 
 #----------------------------------------------------------------
