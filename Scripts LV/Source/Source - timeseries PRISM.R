@@ -3,6 +3,8 @@
 # TIME SERIES
 ################
 
+# library(tidyverse)
+
 # runs will be 1000 sites
 dir_string <- getwd()
 
@@ -48,18 +50,18 @@ env_tmean_current <- dplyr::select(env_tmean_current, -year)
 
 historic_val <- env_tmean_spring %>%
   filter(year %in% c(1895:1957)) %>%
-  mutate(mean = mean(tmean)) %>%
-  mutate(sd = sd(tmean)) %>%
-  select(mean, sd) %>%
+  dplyr::mutate(mean = mean(tmean)) %>%
+  dplyr::mutate(sd = sd(tmean)) %>%
+  dplyr::select(mean, sd) %>%
   distinct()
 historic_mean <- as.numeric(historic_val[1])
 historic_sd_original <- as.numeric(historic_val[2])
 
 current_val <- env_tmean_spring %>% 
   filter(year %in% c(1958:2019)) %>%
-  mutate(mean = mean(tmean)) %>%
-  mutate(sd = sd(tmean)) %>%
-  select(mean, sd) %>%
+  dplyr::mutate(mean = mean(tmean)) %>%
+  dplyr::mutate(sd = sd(tmean)) %>%
+  dplyr::select(mean, sd) %>%
   distinct()
 current_mean <- as.numeric(current_val[1])
 current_sd_original <- as.numeric(current_val[2]) # don't end up using

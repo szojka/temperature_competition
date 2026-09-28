@@ -1,12 +1,11 @@
-# temperature_competition
+# temperature\_competition
 
 ## Set up repository
 
 In order to perform simulations, first we must run the following two scripts:
 
-1. 'Scripts LV/Alphas/Alphas - set alpha values.R': This script defines which range of parameter space we will be running simulations over. Saves the object 'combos_dat.Rdata'.
-
-2. 'Scripts LV/Source/Source - replicates to simulate.R': This script uses the previously defined 'combos.Rdata' to set how many simulations we will fun. Saves the object 'replicate_dat.Rdata'
+1. 'Scripts LV/Alphas/Alphas - set alpha values.R': This script defines which range of parameter space we will be running simulations over. Saves the object 'combos\_dat.Rdata'.
+2. 'Scripts LV/Source/Source - replicates to simulate.R': This script uses the previously defined 'combos.Rdata' to set how many simulations we will run. Saves the object 'replicate\_dat.Rdata'
 
 Now the script 'Source - set basic controls.R' is ready to use, and simulations are able to be initiated.
 
@@ -20,7 +19,7 @@ Along with evaluating competiiton between a temperature specialist and a general
 
 ### Alphas
 
-We test four possible competition scenarios based on three function forms. Specifically, the abrupt functional form is defined in 'Alphas - Rstar inter & intra.R', the gradual function form is defined in 'Alphas - SGH inter & intra.R'. We test two 'null models' where competition is constant, such that each is a better comparison for each temperature-dependent functional form. The null model that is best to compare with the abrupt functional form is defined in 'Alphas - Rstar intercepts.R', and the null model that is best to compare with the gradual funciton form is defined in 'Alpha - SGH intercepts.R'.
+We test four possible competition scenarios based on three function forms. Specifically, the abrupt functional form is defined in 'Alphas - Rstar inter \& intra.R', the gradual function form is defined in 'Alphas - SGH inter \& intra.R'. We test two 'null models' where competition is constant, such that each is a better comparison for each temperature-dependent functional form. The null model that is best to compare with the abrupt functional form is defined in 'Alphas - Rstar intercepts.R', and the null model that is best to compare with the gradual funciton form is defined in 'Alpha - SGH intercepts.R'.
 
 ## Simulations
 
@@ -37,20 +36,21 @@ We save the resulting dataframes of a simulation to the folder...
 The output of the simulations can be found in the 'Scripts LV/Final dataframes' folder.
 
 
+
 ## Figures (using to keep track of which I've ran in this new repo so far)
 
-Before running the figures, we must make a few dataframes by gathering the simulation scenario outputs together (i.e. those found in the 'Scripts LV/Final dataframes' folder). This is done within the 'Scripts LV/Figures' folder, using scripts: 'Source - params for figures.R', and 'Source - proportions for figures.R'. These scripts produce the objects 'parameter_dat.Rdata' and 'proportion_dat.Rdata' respectively, which are saved to the 'Rdata' folder.
+Before running the figures, we must make a few dataframes by gathering the simulation scenario outputs together (i.e. those found in the 'Scripts LV/Final dataframes' folder). This is done within the 'Scripts LV/Figures' folder, using scripts: 'Source - params for figures.R', and 'Source - proportions for figures.R'. These scripts produce the objects 'parameter\_dat.Rdata' and 'proportion\_dat.Rdata' respectively, which are saved to the 'Rdata' folder.
 
-All figures are saved to the folder, 'Figures-outputs'. 
+All figures are saved to the folder, 'Figures-outputs'.
 
-- Figure 2 and 3 - proportions.R (ran)
-- Figure 4 - coex graph no colors.R (ran)
-
-- Supp Figure - environmental conditions & map.R (ran)
-- Supp Figure - coex graph all.R (ran)
-- Supp Figure - parameters for conceptual figure.R (FIX ALPHAS)
+* Figure 2 and 3 - proportions.R (ran)
+* Figure 4 - coex graph no colors.R (ran)
+* Supp Figure - environmental conditions \& map.R (ran)
+* Supp Figure - coex graph all.R (ran)
+* Supp Figure - parameters for conceptual figure.R (FIX ALPHAS)
 
 In the Scripts LV/Figures/Supp - offset specialists/, the process is repeated for this supplemental scenario.
-- OFFSET Figure 1 parameters for conceptual.R (ran)
-- OFFSET all figures.R (ran)
+
+* OFFSET Figure 1 parameters for conceptual.R (ran)
+* OFFSET all figures.R (ran)
 

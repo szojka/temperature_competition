@@ -332,7 +332,7 @@ diff_bottom
 within_theories %>%
   filter(category %in% 'coexist') %>%
   mutate(difference = difference*100)
-  view()
+  #view()
 
 # In the gradual TD scenario, how much did the difference bw constant and TD coexistence shrink by degree?
 within_theories %>%
@@ -480,7 +480,7 @@ dev.off()
 #############################################
 
 era_diffs2 %>%
-  filter(category  %in% 'coexist') %>%
+  filter(theory %in% 'Abrupt') %>%
   mutate(difference = difference*100) %>%
   view()
 

@@ -135,9 +135,9 @@ abline(v = TI, lty = "dashed")
 
 TI # 12.46276 same for both species
 # current max for species specialist:
-apex_si <- full_rs %>% filter(., ri == max(ri)) %>% distinct() %>% select(temp_full) # 12.1
+apex_si <- full_rs %>% filter(., ri == max(ri)) %>% distinct() %>% dplyr::select(temp_full) # 12.1
 # current max for species generalist:
-apex_sj <- full_rs %>% filter(., rj == max(rj)) %>% distinct() %>% select(temp_full) # 11.6
+apex_sj <- full_rs %>% filter(., rj == max(rj)) %>% distinct() %>% dplyr::select(temp_full) # 11.6
 
 # move sp. j (generalist) over TI-apex_sj x units away
 units_j <- round(TI-apex_sj,1)
@@ -146,16 +146,16 @@ units_i <- round(TI-apex_si,1)
 
 # now slide over the curves by adding the units to the temperatures 
 temp1 <- full_rs %>% 
-  select(rj, temp_full) %>%
-  mutate(temp_full = temp_full + as.numeric(units_j)) %>%
-  mutate(temp_full = round(temp_full,1))
+  dplyr::select(rj, temp_full) %>%
+  dplyr::mutate(temp_full = temp_full + as.numeric(units_j)) %>%
+  dplyr::mutate(temp_full = round(temp_full,1))
 plot(temp1$temp_full, temp1$rj, type = 'l')
 abline(v = TI, lty = "dashed")
 
 temp2 <- full_rs %>% 
-  select(ri, temp_full) %>%
-  mutate(temp_full = temp_full + as.numeric(units_i)) %>%
-  mutate(temp_full = round(temp_full,1))
+  dplyr::select(ri, temp_full) %>%
+  dplyr::mutate(temp_full = temp_full + as.numeric(units_i)) %>%
+  dplyr::mutate(temp_full = round(temp_full,1))
 plot(temp2$temp_full, temp2$ri, type = 'l')
 abline(v = TI, lty = "dashed")
 

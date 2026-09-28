@@ -50,11 +50,7 @@ coldbiasj <- round(max_tpcj - ((max_tpcj-Topt_j)/2),1)
 coldbiasi <- round(max_tpci - ((max_tpci-Topt_i)/2),1)
 
 ##############################################
-# aji guidelines for specialist on generalist
-# exerts higher competition but narrower set of ranges
-# filter below min(t) aji = 0.01
-# filter (max(t)-Topt)/2  aji= 0.01
-# filter between min(t) and (max(t)-Topt)/2  aji = 0.2
+# aji guidelines for specialist on specialist
 
 Rstar_interji <- data.frame()
 
@@ -108,11 +104,7 @@ Rstar_interji <- rbind(Rstar_interji, this_iteration)
 #plot(Rstar_interji$temp_full, Rstar_interji$aji) 
 
 ################################################
-# aij guidelines for generalist on specialist
-# exerts lower competition but wider set of ranges
-# filter below min(t) aij = 0.01
-# filter (max(t)-Topt)/2 = 0.01
-# filter between min(t) and (max(t)-Topt)/2 = 0.1
+# aij guidelines for specialist on specialist
 
 
 Rstar_interij <- data.frame()
